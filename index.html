@@ -10,6 +10,7 @@
     <meta name="viewport"
           content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0, target-densitydpi=medium-dpi">
     <script src="vendor/moment/moment-with-locales.js" type="text/javascript"></script>
+    <script src="vendor/moment/moment-timezone-with-data.min.js" type="text/javascript"></script>
     <script src="config.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="vendor/weathericons/css/weather-icons.css"/>
     <link rel="stylesheet" type="text/css" href="css/custom-icons.css"/>
@@ -307,7 +308,7 @@
         // Config parameters.
         var api_params, api_appId, api_lang, api_units, api_locParams, rotation, night_mode, refreshTime, utcOffset;
 
-        utcOffset = getUrlParameter("utcOffset") ? getUrlParameter("utcOffset") : "+08:00";
+        utcOffset = getUrlParameter("utcOffset") ? getUrlParameter("utcOffset") : "Australia/Melbourne";
 
         // For night mode.
         var _sunsetHour = 18;
@@ -382,7 +383,7 @@
 
         window.addEventListener('load', function () {
             console.log("load");
-            moment.locale("zh-cn");
+            moment.locale("en");
 
             _apiParams = getApiParams();
             if (_apiParams === null) {
@@ -523,10 +524,10 @@
 
         function momentWithCorrectUtcOffset(dateTime) {
             if (typeof(utcOffset) != 'undefined' && utcOffset != null) {
-                return moment(dateTime).utcOffset(utcOffset, false);
+                return moment(dateTime).tz(utcOffset);
             } else {
                return moment(dateTime);
-            }
+            };
         }
 
     </script>
