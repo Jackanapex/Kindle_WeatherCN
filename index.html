@@ -391,7 +391,8 @@
             }
 
             if (lang) {
-                moment.locale(lang);
+                // set the locale of time to en regardless of weather language config
+                moment.locale("en");
             }
 
             cleaner = document.getElementById("cleaner");
